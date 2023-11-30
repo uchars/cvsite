@@ -1,4 +1,5 @@
 mod components;
+mod models;
 mod pages;
 
 #[actix_web::main]
