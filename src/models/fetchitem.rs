@@ -3,6 +3,7 @@ pub enum FetchValueType {
     Link(String),
     Text,
     HoverText(String),
+    EMail(String),
 }
 
 #[derive(Clone)]
