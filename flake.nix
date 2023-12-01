@@ -20,6 +20,7 @@
             cacert
             cargo-make
             trunk
+            tailwindcss
             (rust-bin.selectLatestNightlyWith (toolchain:
               toolchain.default.override {
                 extensions = [ "rust-src" "rust-analyzer" ];
