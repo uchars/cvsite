@@ -1,0 +1,78 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #fafaff;
+}
+
+.image-container {
+  position: absolute;
+  top: 20%;
+  left: 60%;
+}
+
+.neofetch-container {
+  background-color: rgba(40, 44, 52, 1);
+  border-radius: 10px;
+  backdrop-filter: blur(30px);
+  display: flex;
+  color: white;
+  flex-direction: column;
+  max-width: 50%;
+  padding-left: 10px;
+
+  .neofetch-split {
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    height: 20%;
+
+    .fetch-image {
+      border-radius: 20%;
+      aspect-ratio: 1/1;
+      max-width: 400px;
+      max-height: 400px;
+      padding-left: 10px;
+    }
+
+    .fetch-text {
+      margin-left: 20px;
+      margin-right: 10px;
+    }
+  }
+}
+
+.progress-bar {
+  width: 60%;
+  height: 40px;
+  overflow: hidden;
+  background-color: var(--progress-background);
+  overflow: hidden;
+  border-radius: 15px;
+
+  .progress-indicator {
+    display: block;
+    width: var(--progress-percentage);
+    border-radius: 15px;
+    height: 100%;
+    background-color: var(--progress-color);
+    animation: progressAnimation 1.8s ease-out;
+  }
+}
+
+@keyframes progressAnimation {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: var(--progress-percentage);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .neofetch-split {
+    /* flex-direction: column !important; */
+  }
+
+  .neofetch-container {
+    max-width: 100%;
+  }
+}
