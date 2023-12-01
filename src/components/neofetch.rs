@@ -1,6 +1,10 @@
 use crate::models::fetchitem::{FetchItem, FetchValueType};
-use leptos::*;
+use leptos::{
+    leptos_dom::logging::{console_error, console_log},
+    *,
+};
 use leptos_use::*;
+use web_sys::console::info;
 
 #[component]
 fn Fetchlist(items: Vec<FetchItem>) -> impl IntoView {
@@ -9,11 +13,14 @@ fn Fetchlist(items: Vec<FetchItem>) -> impl IntoView {
     }
 }
 
+fn get_time() -> String {
+    String::from("")
+}
 #[component]
-pub fn Neofetch() -> impl IntoView {
+pub fn Cursor() -> impl IntoView {
     let cursors = ["|", ""];
     let (c, set_c) = create_signal(cursors[0]);
-    let (interval, set_interval) = create_signal(500);
+    let (interval, _set_interval) = create_signal(500);
     let (idx, set_idx) = create_signal(0);
 
     use_interval_fn(
@@ -23,7 +30,50 @@ pub fn Neofetch() -> impl IntoView {
         },
         interval,
     );
+    view! {
+      <p class="command">{move || c.get()}</p>
+    }
+}
 
+#[component]
+fn Messages() -> impl IntoView {
+    let messages = [
+        "Vim enthusiast",
+        "Espressif developer",
+        "C++ developer",
+        "Rust developer",
+        "Hessian",
+    ];
+    let (word, set_word) = create_signal(messages[0]);
+    let (word_part, set_part) = create_signal(String::from(""));
+    let (interval, set_interval) = create_signal(250_u64);
+    let (index, set_index) = create_signal(0);
+
+    use_interval_fn(
+        move || {
+            console_log("Heyo");
+            if word_part.get().len() < messages[index.get()].len() {
+                let mut w = word_part.get().clone();
+                w.push(messages[index.get()].as_bytes()[w.len()] as char);
+                set_part(w);
+            } else {
+                set_part(String::from(""));
+                set_index((index.get() + 1) % messages.len());
+                set_word(messages[index.get()]);
+            }
+        },
+        interval,
+    );
+
+    view! {
+      <div class="terminal-input">
+        <p class="ps1">"[nils@cvsite:~/]$ " </p>{move || word_part.get()}<Cursor />
+      </div>
+    }
+}
+
+#[component]
+pub fn Neofetch() -> impl IntoView {
     let fetchItems = vec![
         FetchItem {
             name: String::from("Name"),
@@ -85,9 +135,7 @@ pub fn Neofetch() -> impl IntoView {
         }).collect::<Vec<_>>()}
           </div>
         </div>
-        <div class="terminal-input">
-          <p class="ps1">"[nils@cvsite:~/]$"</p><p class="command">{move || c.get()}</p>
-        </div>
+        <Messages />
       </div>
     }
 }

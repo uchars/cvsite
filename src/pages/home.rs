@@ -18,12 +18,11 @@ pub fn Home() -> impl IntoView {
         },
     ];
     view! {
-      <h1>"Nils Sterz"</h1>
       <Neofetch/>
-      <div>
-        {skills.iter().map(|s| {
-        view! {<SkillElement skill=s.clone()/>}
-      }).collect::<Vec<_>>()}
-      </div>
+      // <div>
+      //   {skills.iter().map(|s| {
+      //   view! {<SkillElement skill=s.clone()/>}
+      // }).collect::<Vec<_>>()}
+      // </div>
     }
 }

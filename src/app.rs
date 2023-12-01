@@ -1,4 +1,4 @@
-use crate::pages::{error::NotFound, home::Home};
+use crate::pages::home::Home;
 
 use leptos::*;
 use leptos_meta::*;

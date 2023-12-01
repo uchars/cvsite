@@ -1,6 +1,6 @@
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #fafaff;
+  background-color: rgba(40, 44, 52, 1);
 }
 
 .image-container {
@@ -11,12 +11,12 @@ body {
 
 .neofetch-container {
   background-color: rgba(40, 44, 52, 1);
-  border-radius: 10px;
+  /* border-radius: 10px; */
   backdrop-filter: blur(30px);
   display: flex;
   color: white;
   flex-direction: column;
-  max-width: 70%;
+  max-width: 100%;
   padding-left: 10px;
 
   .terminal-input {
