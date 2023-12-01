@@ -1,6 +1,6 @@
 #[derive(Clone)]
 pub enum FetchValueType {
-    Link,
+    Link(String),
     Text,
 }
 

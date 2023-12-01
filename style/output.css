@@ -13,12 +13,24 @@ body {
   background-color: rgba(40, 44, 52, 1);
   border-radius: 10px;
   -webkit-backdrop-filter: blur(30px);
-  backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
   display: flex;
   color: white;
   flex-direction: column;
-  max-width: 50%;
+  max-width: 70%;
   padding-left: 10px;
+  .terminal-input {
+    display: flex;
+    align-items: center;
+    .ps1 {
+      color: #359e23;
+      font-weight: bold;
+      padding-right: 5px;
+    }
+    .command {
+      color: white;
+    }
+  }
   .neofetch-split {
     display: flex;
     flex-direction: row;
@@ -31,15 +43,27 @@ body {
       max-height: 400px;
       padding-left: 10px;
     }
-    .fetch-text {
-      margin-left: 20px;
-      margin-right: 10px;
-
-      .fetch-text-title {
-        font-weight: bold;
-      }
-
-      .fetch-text-value {
+    .fetch-text-container {
+      .fetch-text {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+        margin-right: 10px;
+        .fetch-text-title {
+          font-weight: bold;
+          color: #41b3e0;
+          margin-right: 5px;
+        }
+        .fetch-text-value {
+          .fetch-link {
+            color: white;
+            transition: transform 0.2s ease-in-out;
+          }
+          .fetch-link:hover {
+            color: red;
+            transform: scale(1.05);
+          }
+        }
       }
     }
   }

@@ -60,20 +60,34 @@ pub fn Neofetch() -> impl IntoView {
             value: String::from("neovim"),
             value_type: FetchValueType::Text,
         },
+        FetchItem {
+            name: String::from("GitHub"),
+            value: String::from("github.com/uchars"),
+            value_type: FetchValueType::Link(String::from("https://github.com/uchars/")),
+        },
+        FetchItem {
+            name: String::from("LinkedIn"),
+            value: String::from("linkedin.com/in/nils-sterz"),
+            value_type: FetchValueType::Link(String::from("https://linkedin.com/in/nils-sterz")),
+        },
     ];
 
     view! {
       <div class="neofetch-container">
-        <p>"[nils@cvsite:~/]$ fetch"</p>
+        <div class="terminal-input">
+          <p class="ps1">"[nils@cvsite:~/]$"</p><p>"fetch"</p>
+        </div>
         <div class="neofetch-split">
           <img class="fetch-image" src="img/nils.jpg"/>
-          <div class="fetch-text">
+          <div class="fetch-text-container">
             {fetchItems.iter().map(|i| {
           view! {<NeofetchLine item=i.clone()/>}
         }).collect::<Vec<_>>()}
           </div>
         </div>
-        <p>"[nils@cvsite:~/]$ "{move || c.get()}</p>
+        <div class="terminal-input">
+          <p class="ps1">"[nils@cvsite:~/]$"</p><p class="command">{move || c.get()}</p>
+        </div>
       </div>
     }
 }
@@ -81,11 +95,18 @@ pub fn Neofetch() -> impl IntoView {
 #[component]
 fn NeofetchLine(item: FetchItem) -> impl IntoView {
     view! {
+      <div class="fetch-text">
       <div class="fetch-text-title">
       {item.name}:
       </div>
       <div class="fetch-text-value">
-      {item.value}
+      {
+          match item.value_type {
+            FetchValueType::Link(url)=> {view!{<a class="fetch-link" target="_blank" href=url.clone()>{ item.value.clone() }</a>}},
+            FetchValueType::Text => {view!{<a>{ item.value.clone() }</a>}},
+          }
+      }
+      </div>
       </div>
     }
 }
