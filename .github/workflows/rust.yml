@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: "18"
       - name: Tailwind Installation
-        run: npm install tailwindcss
+        run: npm install -D tailwindcss
       - name: Run Tailwind
         run: tailwindcss -i ./input.css -o ./style/output.css --watch
       - name: Upload artifacts
