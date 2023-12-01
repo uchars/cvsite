@@ -9,7 +9,6 @@ pub fn App() -> impl IntoView {
     provide_meta_context();
 
     view! {
-      <Stylesheet id="leptos" href="/pkg/leptos_start.css"/>
       <Title text="Nils Sterz"/>
         <Router>
         <Routes>
