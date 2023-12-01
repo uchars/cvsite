@@ -13,8 +13,7 @@ pub fn App() -> impl IntoView {
       <Title text="Nils Sterz"/>
         <Router>
         <Routes>
-        <Route path="" view=Home/>
-        <Route path="/*any" view=NotFound/>
+        <Route path="/*any" view=Home/>
         </Routes>
       </Router>
     }
