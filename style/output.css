@@ -49,6 +49,12 @@ body {
         align-items: center;
         margin-left: 20px;
         margin-right: 10px;
+        .fetch-hover {
+          position: relative;
+          display: inline-block;
+          border-bottom: 1px dotted white;
+          /* If you want dots under the hoverable text */
+        }
         .fetch-text-title {
           font-weight: bold;
           color: #41b3e0;

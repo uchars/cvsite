@@ -2,6 +2,7 @@
 pub enum FetchValueType {
     Link(String),
     Text,
+    HoverText(String),
 }
 
 #[derive(Clone)]

@@ -1,4 +1,5 @@
 use crate::models::fetchitem::{FetchItem, FetchValueType};
+use chrono::{Local, NaiveDate, NaiveDateTime, Timelike};
 use leptos::{
     leptos_dom::logging::{console_error, console_log},
     *,
@@ -14,8 +15,26 @@ fn Fetchlist(items: Vec<FetchItem>) -> impl IntoView {
 }
 
 fn get_time() -> String {
-    String::from("")
+    let target_date = NaiveDate::from_ymd(1999, 10, 14).and_hms(0, 0, 0);
+
+    // Get the current date and time in local time
+    let current_date = Local::now();
+
+    // Convert current date to NaiveDateTime
+    let current_date_naive = NaiveDateTime::from_timestamp(current_date.timestamp(), 0);
+
+    // Calculate the duration between the target date and the current date
+    let duration = current_date_naive.signed_duration_since(target_date);
+
+    // Extract days, hours, and minutes from the duration
+    let days = duration.num_days();
+    let hours = duration.num_hours() % 24;
+    let minutes = duration.num_minutes() % 60;
+
+    // Format the result as a string
+    format!("{} days, {} hours, {} minutes", days, hours, minutes)
 }
+
 #[component]
 pub fn Cursor() -> impl IntoView {
     let cursors = ["|", ""];
@@ -82,8 +101,8 @@ pub fn Neofetch() -> impl IntoView {
         },
         FetchItem {
             name: String::from("Uptime"),
-            value: String::from("8813 days, 12 hours, 11 minutes"),
-            value_type: FetchValueType::Text,
+            value: get_time(),
+            value_type: FetchValueType::HoverText(String::from("14. October 1999")),
         },
         FetchItem {
             name: String::from("Country"),
@@ -150,8 +169,9 @@ fn NeofetchLine(item: FetchItem) -> impl IntoView {
       <div class="fetch-text-value">
       {
           match item.value_type {
-            FetchValueType::Link(url)=> {view!{<a class="fetch-link" target="_blank" href=url.clone()>{ item.value.clone() }</a>}},
-            FetchValueType::Text => {view!{<a>{ item.value.clone() }</a>}},
+            FetchValueType::Link(url)=> {view!{<div><a class="fetch-link" target="_blank" href=url.clone()>{ item.value.clone() }</a></div>}},
+            FetchValueType::Text => {view!{<div><a>{ item.value.clone() }</a></div>}},
+            FetchValueType::HoverText(hover) => {view!{<div class="fetch-hover" title={hover}>{item.value.clone()}</div>}},
           }
       }
       </div>
