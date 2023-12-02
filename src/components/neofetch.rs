@@ -95,7 +95,7 @@ pub fn Neofetch() -> impl IntoView {
           <p class="ps1">"[nils@cvsite:~/]$"</p><p>"fetch"</p>
         </div>
         <div class="neofetch-split">
-          <img class="fetch-image" src="img/nils.jpg"/>
+          <img class="fetch-image" alt="nils" src="img/nils.jpg"/>
           <Fetchlist items={fetchItems}/>
         </div>
         <Messages />
@@ -114,7 +114,7 @@ fn NeofetchLine(item: FetchItem) -> impl IntoView {
       {
           match item.value_type {
             FetchValueType::Link(url)=> {view!{<div><a class="fetch-link" target="_blank" href=url.clone()>{ item.value.clone() }</a></div>}},
-            FetchValueType::Text => {view!{<div><a>{ item.value.clone() }</a></div>}},
+            FetchValueType::Text => {view!{<div>{ item.value.clone() }</div>}},
             FetchValueType::HoverText(hover) => {view!{<div class="fetch-hover" title={hover}>{item.value.clone()}</div>}},
             FetchValueType::EMail(mail) => {view!{<div><a class="fetch-link" target="_blank" href=mail.clone()>{ item.value.clone() }</a></div>}}
           }
