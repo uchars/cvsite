@@ -22,7 +22,7 @@ body {
     display: flex;
     align-items: center;
     .ps1 {
-      color: #359e23;
+      color: #bda7fa;
       font-weight: bold;
       padding-right: 5px;
     }
@@ -37,10 +37,11 @@ body {
     height: 20%;
 
     .fetch-image {
+      width: 200;
+      height: 200;
       border-radius: 20%;
       aspect-ratio: 1/1;
       max-height: 400px;
-      padding-left: 10px;
     }
 
     .fetch-text-container {
