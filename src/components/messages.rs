@@ -1,6 +1,7 @@
 use crate::components::cursor::Cursor;
-use leptos::*;
-use leptos_use::*;
+use leptos::{leptos_dom::logging::console_log, *};
+use std::thread::sleep;
+use std::time::Duration;
 
 #[component]
 pub fn Messages() -> impl IntoView {
@@ -12,21 +13,32 @@ pub fn Messages() -> impl IntoView {
         "Hessian",
     ];
     let (word_part, set_part) = create_signal(String::from(""));
-    let (interval, set_interval) = create_signal(250_u64);
     let (index, set_index) = create_signal(0);
+    let (is_writing, set_writing) = create_signal(true);
+    let (reverse, set_reverse) = create_signal(false);
 
-    use_interval_fn(
+    set_interval(
         move || {
+            if !is_writing.get() {
+                return;
+            }
             if word_part.get().len() < messages[index.get()].len() {
                 let mut w = word_part.get().clone();
                 w.push(messages[index.get()].as_bytes()[w.len()] as char);
                 set_part(w);
             } else {
-                set_part(String::from(""));
-                set_index((index.get() + 1) % messages.len());
+                set_writing(false);
+                set_timeout(
+                    move || {
+                        set_part(String::from(""));
+                        set_index((index.get() + 1) % messages.len());
+                        set_writing(true);
+                    },
+                    Duration::from_secs(1),
+                );
             }
         },
-        interval,
+        Duration::from_millis(100),
     );
 
     view! {

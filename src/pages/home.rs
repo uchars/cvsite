@@ -19,10 +19,5 @@ pub fn Home() -> impl IntoView {
     ];
     view! {
       <Neofetch/>
-      // <div>
-      //   {skills.iter().map(|s| {
-      //   view! {<SkillElement skill=s.clone()/>}
-      // }).collect::<Vec<_>>()}
-      // </div>
     }
 }

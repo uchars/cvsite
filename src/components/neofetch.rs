@@ -5,7 +5,6 @@ use leptos::{
     leptos_dom::logging::{console_error, console_log},
     *,
 };
-use leptos_use::*;
 use web_sys::console::info;
 
 #[component]
