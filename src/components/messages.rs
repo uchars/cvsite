@@ -34,7 +34,7 @@ pub fn Messages() -> impl IntoView {
                         set_index((index.get() + 1) % messages.len());
                         set_writing(true);
                     },
-                    Duration::from_secs(1),
+                    Duration::from_secs(3),
                 );
             }
         },
@@ -43,7 +43,7 @@ pub fn Messages() -> impl IntoView {
 
     view! {
       <div class="terminal-input">
-        <p class="ps1">"[nils@cvsite:~/]$ " </p>{move || word_part.get()}<Cursor />
+        <p class="ps1">"[nils@cvsite:~/]$ " </p>{move || word_part.get()}<Cursor writing_sig=is_writing/>
       </div>
     }
 }
