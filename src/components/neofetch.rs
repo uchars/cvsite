@@ -75,7 +75,7 @@ pub fn Neofetch() -> impl IntoView {
           <p class="ps1">"[nils@cvsite:~/]$"</p><p>"fetch"</p>
         </div>
         <div class="neofetch-split">
-          <img class="fetch-image" alt="nils" src="public/images/nils.jpg"/>
+          <img class="fetch-image" alt="nils" src="public/images/nils.webp"/>
           <Fetchlist items={fetchItems}/>
         </div>
         <Messages />
