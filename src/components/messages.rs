@@ -1,6 +1,5 @@
 use crate::components::cursor::Cursor;
-use leptos::{leptos_dom::logging::console_log, *};
-use std::thread::sleep;
+use leptos::*;
 use std::time::Duration;
 
 #[component]
@@ -38,7 +37,7 @@ pub fn Messages() -> impl IntoView {
                 );
             }
         },
-        Duration::from_millis(100),
+        Duration::from_millis(85),
     );
 
     view! {

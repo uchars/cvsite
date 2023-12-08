@@ -2,6 +2,7 @@ use leptos::{mount_to_body, view};
 mod components;
 mod models;
 mod pages;
+mod utils;
 
 pub fn main() {
     use cvsite::app::*;
