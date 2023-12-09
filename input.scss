@@ -3,12 +3,27 @@ html {
   margin: 0;
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   padding: 0;
   margin: 0;
   font-family: monospace;
   font-size: 1.2rem;
   background-color: rgba(40, 44, 52, 1);
+}
+
+.terminal-container {
+  height: 100vh;
+  .pane {
+    flex: 1;
+    box-sizing: border-box;
+    min-height: 50%;
+    border: 1px solid green;
+  }
 }
 
 .image-container {
@@ -27,12 +42,10 @@ body {
   }
 }
 
-.output {
-  color: white;
-}
-
 .terminal-input {
   display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
   align-items: center;
   .ps1 {
     color: #bda7fa;
@@ -42,6 +55,10 @@ body {
   .command {
     color: white;
   }
+}
+
+.output {
+  color: white;
 }
 
 .project-link {
@@ -104,33 +121,6 @@ body {
         }
       }
     }
-  }
-}
-
-.progress-bar {
-  width: 60%;
-  height: 40px;
-  overflow: hidden;
-  background-color: var(--progress-background);
-  overflow: hidden;
-  border-radius: 15px;
-
-  .progress-indicator {
-    display: block;
-    width: var(--progress-percentage);
-    border-radius: 15px;
-    height: 100%;
-    background-color: var(--progress-color);
-    animation: progressAnimation 1.8s ease-out;
-  }
-}
-
-@keyframes progressAnimation {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: var(--progress-percentage);
   }
 }
 

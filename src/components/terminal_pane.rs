@@ -2,7 +2,7 @@ use leptos::*;
 
 pub fn TerminalPane(content: impl IntoView) -> impl IntoView {
     view! {
-      <div class="terminal-pane">
+      <div class="pane">
         { content }
       </div>
     }

@@ -42,7 +42,7 @@ pub fn Messages() -> impl IntoView {
 
     view! {
       <div class="terminal-input">
-        <p class="ps1">"[nils@cvsite:~/]$ " </p>{move || word_part.get()}<Cursor writing_sig=is_writing/>
+        <p class="ps1">"[nils@cvsite:~/]$ " </p><p class="command">{move || word_part.get()}</p><Cursor writing_sig=is_writing/>
       </div>
     }
 }

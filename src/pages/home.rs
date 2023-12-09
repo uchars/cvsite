@@ -6,7 +6,7 @@ use leptos::*;
 #[component]
 pub fn Home() -> impl IntoView {
     view! {
-      <div class="terminal">
+      <div class="terminal-container">
         {TerminalPane(Neofetch())}
         {TerminalPane(Infosection())}
       </div>

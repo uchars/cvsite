@@ -70,16 +70,16 @@ pub fn Neofetch() -> impl IntoView {
     ];
 
     view! {
+      <div class="terminal-input">
+        <p class="ps1">"[nils@cvsite:~/]$"</p><p class="command">fetch</p>
+      </div>
       <div class="neofetch-container">
-        <div class="terminal-input">
-          <p class="ps1">"[nils@cvsite:~/]$"</p><p>"fetch"</p>
-        </div>
         <div class="neofetch-split">
           <img class="fetch-image" alt="nils" src="public/images/nils.webp"/>
           <Fetchlist items={fetchItems}/>
         </div>
-        <Messages />
       </div>
+      <Messages />
     }
 }
 
