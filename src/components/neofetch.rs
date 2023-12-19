@@ -1,6 +1,8 @@
 use crate::components::messages::Messages;
 use crate::models::fetchitem::{FetchItem, FetchValueType};
-use crate::utils::get_time;
+use crate::utils::get_dhm_since;
+use chrono::NaiveDate;
+use emojic::flat::FLAG_GERMANY;
 use leptos::*;
 
 #[component]
@@ -24,12 +26,12 @@ pub fn Neofetch() -> impl IntoView {
         },
         FetchItem {
             name: String::from("Uptime"),
-            value: get_time(),
+            value: get_dhm_since(NaiveDate::from_ymd_opt(1999, 10, 14)),
             value_type: FetchValueType::HoverText(String::from("14. October 1999")),
         },
         FetchItem {
             name: String::from("Country"),
-            value: String::from("Germany 🇩🇪"),
+            value: String::from(format!("Germany {}", FLAG_GERMANY)),
             value_type: FetchValueType::Text,
         },
         FetchItem {
@@ -53,6 +55,16 @@ pub fn Neofetch() -> impl IntoView {
             value_type: FetchValueType::Text,
         },
         FetchItem {
+            name: String::from("Major Skills"),
+            value: String::from("Rust, C++, C"),
+            value_type: FetchValueType::Text,
+        },
+        FetchItem {
+            name: String::from("Minor Skills"),
+            value: String::from("Python, Zig"),
+            value_type: FetchValueType::Text,
+        },
+        FetchItem {
             name: String::from("GitHub"),
             value: String::from("github.com/uchars"),
             value_type: FetchValueType::Link(String::from("https://github.com/uchars/")),
@@ -63,9 +75,9 @@ pub fn Neofetch() -> impl IntoView {
             value_type: FetchValueType::Link(String::from("https://linkedin.com/in/nils-sterz")),
         },
         FetchItem {
-            name: String::from("Contact"),
-            value: String::from("email@nils.sterz"),
-            value_type: FetchValueType::EMail(String::from("email@nils.sterz")),
+            name: String::from("EMail"),
+            value: String::from("coming soon"),
+            value_type: FetchValueType::EMail(String::from("coming soon")),
         },
     ];
 
@@ -96,7 +108,7 @@ fn NeofetchLine(item: FetchItem) -> impl IntoView {
             FetchValueType::Link(url)=> {view!{<div><a class="fetch-link" target="_blank" href=url.clone()>{ item.value.clone() }</a></div>}},
             FetchValueType::Text => {view!{<div>{ item.value.clone() }</div>}},
             FetchValueType::HoverText(hover) => {view!{<div class="fetch-hover" title={hover}>{item.value.clone()}</div>}},
-            FetchValueType::EMail(mail) => {view!{<div><a class="fetch-link" target="_blank" href=mail.clone()>{ item.value.clone() }</a></div>}}
+            FetchValueType::EMail(mail) => {view!{<div>{mail}</div>}}
           }
       }
       </div>

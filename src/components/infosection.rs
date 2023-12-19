@@ -1,3 +1,4 @@
+use emojic::flat::{CRAB, RED_HEART};
 use leptos::*;
 
 use crate::models::project::Project;
@@ -20,6 +21,10 @@ pub fn Infosection() -> impl IntoView {
         Project::new("cvsite", "green", "https://github.com/uchars/cvsite"),
     ];
     view! {
+      <div class="terminal-input">
+        <p class="ps1" style="margin:0;padding:0;padding-right:5px">"[nils@cvsite:~/projects]$ " </p><p class="command" style="margin:0;padding:0">info</p>
+      </div>
+      <div class="output">written with {format!("{} & {}", RED_HEART, CRAB)}</div>
       <div class="terminal-input">
         <p class="ps1" style="margin:0;padding:0;padding-right:5px">"[nils@cvsite:~/projects]$ " </p><p class="command" style="margin:0;padding:0">ls -l</p>
       </div>

@@ -14,7 +14,6 @@ pub fn Messages() -> impl IntoView {
     let (word_part, set_part) = create_signal(String::from(""));
     let (index, set_index) = create_signal(0);
     let (is_writing, set_writing) = create_signal(true);
-    let (reverse, set_reverse) = create_signal(false);
 
     set_interval(
         move || {
